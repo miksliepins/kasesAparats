@@ -9,14 +9,18 @@ logs.configure(bg='#E5E5E5')
 lietotaja_preces = []
 
 def lietotaja_izvēle():
-    
+    pass
 
 
 def augļi_darzeņi_logs():
+    
+    global ābols
+    
     auglu_darzenuLogs = Toplevel()
     auglu_darzenuLogs.geometry('500x400')
-    auglu_darzenuLogs.title('augļi un dārzeņi')
-    abola_izvele = Button(logs, text='Ābols')
+    auglu_darzenuLogs.title('Augļi un dārzeņi')
+    ābols = Button(auglu_darzenuLogs, text='Ābols',fg='white', bg='#3b3b3b', width=8, height=2, command=lietotaja_izvēle)
+    ābols.place(x= 40, y= 20)
     
 
 ####################################### pogas
