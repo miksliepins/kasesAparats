@@ -9,12 +9,9 @@ logs.configure(bg='#E5E5E5')
 pirkums_pabeigts = False
 
 produkta_cenas = {
-    # Augļi un dārzeņi
     "Ābols": 0.50,
     "Bumbieris": 0.75,
     "Apelsīns": 1.00,
-    "Mandarīni": 1.20,
-    "Sīpoli": 0.30,
     "Tomāts": 0.80,
     "Gurķis": 0.60,
     "Paprika": 1.10,
@@ -60,6 +57,7 @@ produkta_cenas = {
     "Jogurts": 1.30
 }
 
+
 #################################### Augļu logs
 def augļi_darzeņi_logs():
     global auglu_darzenuLogs
@@ -67,21 +65,29 @@ def augļi_darzeņi_logs():
     auglu_darzenuLogs = Toplevel()
     auglu_darzenuLogs.geometry('500x400')
     auglu_darzenuLogs.title('Augļi un dārzeņi')
-    ābols = Button(auglu_darzenuLogs, text='Ābols', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Ābols"))
+    ābols = Button(auglu_darzenuLogs, text='Ābols', fg='white', bg='#3b3b3b', width=12, height=2,
+                   command=lambda: lietotaja_izvēle("Ābols"))
     ābols.place(x=80, y=50)
-    Bumbieris = Button(auglu_darzenuLogs, text='Bumbieris', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Bumbieris"))
+    Bumbieris = Button(auglu_darzenuLogs, text='Bumbieris', fg='white', bg='#3b3b3b', width=12, height=2,
+                       command=lambda: lietotaja_izvēle("Bumbieris"))
     Bumbieris.place(x=80, y=100)
-    Apelsīns = Button(auglu_darzenuLogs, text='Apelsīns', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Apelsīns"))
+    Apelsīns = Button(auglu_darzenuLogs, text='Apelsīns', fg='white', bg='#3b3b3b', width=12, height=2,
+                      command=lambda: lietotaja_izvēle("Apelsīns"))
     Apelsīns.place(x=80, y=150)
-    Mandarīni = Button(auglu_darzenuLogs, text='Mandarīni', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Mandarīni"))
+    Mandarīni = Button(auglu_darzenuLogs, text='Mandarīni', fg='white', bg='#3b3b3b', width=12, height=2,
+                       command=lambda: lietotaja_izvēle("Mandarīni"))
     Mandarīni.place(x=80, y=200)
-    Sīpoli = Button(auglu_darzenuLogs, text='Sīpoli', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Sīpoli"))
+    Sīpoli = Button(auglu_darzenuLogs, text='Sīpoli', fg='white', bg='#3b3b3b', width=12, height=2,
+                    command=lambda: lietotaja_izvēle("Sīpoli"))
     Sīpoli.place(x=270, y=50)
-    Tomāts = Button(auglu_darzenuLogs, text='Tomāts', fg='white', bg='#3b3b3b', width=12, height=2, command=lambda: lietotaja_izvēle("Tomāts"))
+    Tomāts = Button(auglu_darzenuLogs, text='Tomāts', fg='white', bg='#3b3b3b', width=12, height=2,
+                    command=lambda: lietotaja_izvēle("Tomāts"))
     Tomāts.place(x=270, y=100)
-    Gurķis = Button(auglu_darzenuLogs, text='Gurķis', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Gurķis"))
+    Gurķis = Button(auglu_darzenuLogs, text='Gurķis', fg='white', bg='#3b3b3b', width=12, height=2,
+                    command=lambda: lietotaja_izvēle("Gurķis"))
     Gurķis.place(x=270, y=150)
-    Paprika = Button(auglu_darzenuLogs, text='Paprika', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Paprika"))
+    Paprika = Button(auglu_darzenuLogs, text='Paprika', fg='white', bg='#3b3b3b', width=12, height=2,
+                     command=lambda: lietotaja_izvēle("Paprika"))
     Paprika.place(x=270, y=200)
 
 
@@ -90,21 +96,29 @@ def Gaļas_atver_logu():
     Gaļas_logs = Toplevel()
     Gaļas_logs.geometry('500x400')
     Gaļas_logs.title("Gaļas produkti")
-    Vistas_gaļa = Button(Gaļas_logs, text='Vistas gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Vistas gaļa"))
+    Vistas_gaļa = Button(Gaļas_logs, text='Vistas gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                         command=lambda: lietotaja_izvēle("Vistas gaļa"))
     Vistas_gaļa.place(x=80, y=50)
-    Liellopu_gaļa = Button(Gaļas_logs, text='Liellopu gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Liellopu gaļa"))
+    Liellopu_gaļa = Button(Gaļas_logs, text='Liellopu gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                           command=lambda: lietotaja_izvēle("Liellopu gaļa"))
     Liellopu_gaļa.place(x=80, y=100)
-    Cūkgaļa = Button(Gaļas_logs, text='Cūkgaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Cūkgaļa"))
+    Cūkgaļa = Button(Gaļas_logs, text='Cūkgaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                     command=lambda: lietotaja_izvēle("Cūkgaļa"))
     Cūkgaļa.place(x=80, y=150)
-    Jēra_gaļa = Button(Gaļas_logs, text='Jēra gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Jēra gaļa"))
+    Jēra_gaļa = Button(Gaļas_logs, text='Jēra gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                       command=lambda: lietotaja_izvēle("Jēra gaļa"))
     Jēra_gaļa.place(x=80, y=200)
-    Teļa_gaļa = Button(Gaļas_logs, text='Teļa gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Teļa gaļa"))
+    Teļa_gaļa = Button(Gaļas_logs, text='Teļa gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                       command=lambda: lietotaja_izvēle("Teļa gaļa"))
     Teļa_gaļa.place(x=270, y=50)
-    Tītara_gaļa = Button(Gaļas_logs, text='Tītara gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Tītara gaļa"))
+    Tītara_gaļa = Button(Gaļas_logs, text='Tītara gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                         command=lambda: lietotaja_izvēle("Tītara gaļa"))
     Tītara_gaļa.place(x=270, y=100)
-    Pīles_gaļa = Button(Gaļas_logs, text='Pīles gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Pīles gaļa"))
+    Pīles_gaļa = Button(Gaļas_logs, text='Pīles gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                        command=lambda: lietotaja_izvēle("Pīles gaļa"))
     Pīles_gaļa.place(x=270, y=150)
-    Truša_gaļa = Button(Gaļas_logs, text='Truša gaļa', fg='white', bg='#3b3b3b', width=12, height=2,command=lambda: lietotaja_izvēle("Truša gaļa"))
+    Truša_gaļa = Button(Gaļas_logs, text='Truša gaļa', fg='white', bg='#3b3b3b', width=12, height=2,
+                        command=lambda: lietotaja_izvēle("Truša gaļa"))
     Truša_gaļa.place(x=270, y=200)
 
 
@@ -251,9 +265,7 @@ def nonemt_preces():
 
 #########################
 
-summa = 0.0
 def kopējā_summa():
-
     summa = sum(cena for _, cena in lietotaja_preces)
     summa_text.config(text=f'Kopā: €{summa:.2f}')
 
@@ -265,64 +277,43 @@ nonemt_preces_poga = Button(logs, text='Noņemt pēdējo preci', fg='white', bg=
                             pady=20)
 nonemt_preces_poga.place(x=440, y=580)
 
-samaksāts = Label(logs, text="Samaksāts: 0.00", font=("Helvetica"), bg='#E5E5E5')
-samaksāts.place(x=630, y=490)
 
-def pirkums_pabeigts():
-    global pirkums_pabeigts
 
-    if not pirkums_pabeigts:
-        augli_darzeni_poga.config(state=DISABLED)
-        gaļas_poga.config(state=DISABLED)
-        graudu_produkti_poga.config(state=DISABLED)
-        saldētie_produkti_poga.config(state=DISABLED)
-        piena_produkti_poga.config(state=DISABLED)
-        nonemt_preces_poga.config(state=DISABLED)
 
-    else:
-        atlikums = samaksāts_kopejais - summa
-        if atlikums >= 0:
-            samaksāts.config(text=f'Samaksāts: €{samaksāts_kopejais:.2f}\nAtlikums: €{atlikums:.2f}')
-        else:
-            samaksāts.config(text=f'Samaksāts: €{samaksāts_kopejais:.2f}\nNepietiek: €{-atlikums:.2f}')
 
-samaksāts_kopejais = 0.0
-def pievienot_naudu_samaksāts(samaksāts_summa):
-    global samaksāts_kopejais
-    samaksāts_kopejais += samaksāts_summa
-    samaksāts.config(text=f"Samaksāts: €{samaksāts_kopejais:.2f}")
 
-poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20, command=lambda: pievienot_naudu_samaksāts(0.01))
+
+poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20)
 poga_1.place(x=50, y=420)
-poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20, command=lambda: pievienot_naudu_samaksāts(0.02))
+poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20)
 poga_2.place(x=140, y=420)
-poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20, command=lambda: pievienot_naudu_samaksāts(0.05))
+poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20)
 poga_3.place(x=230, y=420)
-poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20, command=lambda: pievienot_naudu_samaksāts(0.10))
+poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20)
 poga_4.place(x=50, y=500)
-poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20, command=lambda: pievienot_naudu_samaksāts(0.20))
+poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20)
 poga_5.place(x=140, y=500)
-poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20, command=lambda: pievienot_naudu_samaksāts(0.50))
+poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20)
 poga_6.place(x=230, y=500)
-poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: pievienot_naudu_samaksāts(1.00))
+poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20)
 poga_7.place(x=50, y=580)
-poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: pievienot_naudu_samaksāts(2.00))
+poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20)
 poga_8.place(x=140, y=580)
-poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: pievienot_naudu_samaksāts(5.00))
+poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20)
 poga_9.place(x=230, y=580)
-poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20, command=lambda: pievienot_naudu_samaksāts(10.00))
+poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20)
 poga_10.place(x=350, y=420)
-poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20, command=lambda: pievienot_naudu_samaksāts(20.00))
+poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20)
 poga_11.place(x=440, y=420)
-poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20, command=lambda: pievienot_naudu_samaksāts(50.00))
+poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20)
 poga_12.place(x=530, y=420)
-poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107, command=lambda: pievienot_naudu_samaksāts(100.00))
+poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107)
 poga_13.place(x=350, y=500)
 
 poga_enter = Button(logs, text="enter", bg='lightgreen', padx=20, pady=20, command=kopējā_summa)
 poga_enter.place(x=350, y=580)
 
-poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20, command=pirkums_pabeigts)
+poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20)
 poga_pabiegt_pirkumu.place(x=620, y=580)
 
 logs.mainloop()
