@@ -246,15 +246,11 @@ ritinātājs = Scrollbar(logs)
 lietotaja_preces = []
 
 
+def kopējā_summa():
+    summa = sum(cena for _, cena in lietotaja_preces)
+    summa_text.config(text=f'Kopā: €{summa:.2f}')
+
 ####### izmantoju AI
-def lietotaja_izvēle(produkts):
-    global cena
-
-    if produkts in produkta_cenas:
-        cena = produkta_cenas[produkts]
-        lietotaja_preces.append((produkts, cena))
-        kases_aprāts_ekrāns.insert(END, f"{produkts} - €{cena:.2f}\n")
-
 
 def nonemt_preces():
     if lietotaja_preces:
@@ -262,13 +258,21 @@ def nonemt_preces():
         kases_aprāts_ekrāns.delete(1.0, END)
         for produkts, cena in lietotaja_preces:
             kases_aprāts_ekrāns.insert(END, f"{produkts} - €{cena:.2f}\n")
+            kopējā_summa()
+
+def lietotaja_izvēle(produkts):
+    global cena
+
+    if produkts in produkta_cenas:
+        cena = produkta_cenas[produkts]
+        lietotaja_preces.append((produkts, cena))
+        kases_aprāts_ekrāns.insert(END, f"{produkts} - €{cena:.2f}\n")
+        kopējā_summa()
+        
+
 
 
 #########################
-
-def kopējā_summa():
-    summa = sum(cena for _, cena in lietotaja_preces)
-    summa_text.config(text=f'Kopā: €{summa:.2f}')
 
 
 summa_text = Label(logs, text="Kopā: 0.00", font=("Helvetica"), bg='#E5E5E5')
@@ -279,6 +283,7 @@ nonemt_preces_poga.place(x=440, y=580)
 
 
 pirkums_pabeigts = False
+ 
 
 def pabeigt_pirkumu():
     
@@ -294,10 +299,11 @@ def pabeigt_pirkumu():
         piena_produkti_poga.config(state=DISABLED)
         saldētie_produkti_poga.config(state=DISABLED)
         graudu_produkti_poga.config(state=DISABLED)
-
+        nonemt_preces_poga.config(state=DISABLED)
         
 
-
+samaskātais = Label(logs, text='Samaksātais: ', bg='#E5E5E5', font=('Helvetica', 11) )
+samaskātais.place(x= 630, y= 490)
 
 poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20)
 poga_1.place(x=50, y=420)
@@ -325,6 +331,7 @@ poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20)
 poga_12.place(x=530, y=420)
 poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107)
 poga_13.place(x=350, y=500)
+
 
 poga_summa = Button(logs, text="summa", bg='lightgreen', padx=20, pady=20, command=kopējā_summa)
 poga_summa.place(x=350, y=580)
@@ -332,41 +339,5 @@ poga_summa.place(x=350, y=580)
 poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20, command=pabeigt_pirkumu)
 poga_pabiegt_pirkumu.place(x=620, y=580)
 
-
-
-
-
-poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20)
-poga_1.place(x=50, y=420)
-poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20)
-poga_2.place(x=140, y=420)
-poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20)
-poga_3.place(x=230, y=420)
-poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20)
-poga_4.place(x=50, y=500)
-poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20)
-poga_5.place(x=140, y=500)
-poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20)
-poga_6.place(x=230, y=500)
-poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20)
-poga_7.place(x=50, y=580)
-poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20)
-poga_8.place(x=140, y=580)
-poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20)
-poga_9.place(x=230, y=580)
-poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20)
-poga_10.place(x=350, y=420)
-poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20)
-poga_11.place(x=440, y=420)
-poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20)
-poga_12.place(x=530, y=420)
-poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107)
-poga_13.place(x=350, y=500)
-
-poga_enter = Button(logs, text="enter", bg='lightgreen', padx=20, pady=20, command=kopējā_summa)
-poga_enter.place(x=350, y=580)
-
-poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20)
-poga_pabiegt_pirkumu.place(x=620, y=580)
 
 logs.mainloop()
