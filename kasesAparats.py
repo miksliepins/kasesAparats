@@ -1,6 +1,7 @@
 from tkinter import *
 from collections import Counter
 
+
 logs = Tk()
 logs.title("Kases aparāts")
 logs.geometry("800x700")
@@ -279,7 +280,7 @@ summa_text = Label(logs, text="Kopā: 0.00", font=("Helvetica"), bg='#E5E5E5')
 summa_text.place(x=630, y=420)
 
 nonemt_preces_poga = Button(logs, text='Noņemt pēdējo preci', fg='white', bg='red', command=nonemt_preces, padx=27, pady=20)
-nonemt_preces_poga.place(x=440, y=580)
+nonemt_preces_poga.place(x=350, y=580)
 
 
 pirkums_pabeigts = False
@@ -290,7 +291,7 @@ def pabeigt_pirkumu():
     global pirkums_pabeigts
 
     if not lietotaja_preces:
-        pirkums_pabeigts = FALSE
+        pirkums_pabeigts = False
     else:
         pirkums_pabeigts = True
 
@@ -302,42 +303,44 @@ def pabeigt_pirkumu():
         nonemt_preces_poga.config(state=DISABLED)
         
 
+samaksātā_cena = 0.0
+def samaksāt_preces():
+    0 + samaksāt_preces()
+
 samaskātais = Label(logs, text='Samaksātais: ', bg='#E5E5E5', font=('Helvetica', 11) )
 samaskātais.place(x= 630, y= 490)
 
-poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20)
+poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() + 0.01)
 poga_1.place(x=50, y=420)
-poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20)
+poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() +0.02)
 poga_2.place(x=140, y=420)
-poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20)
+poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() + 0.05)
 poga_3.place(x=230, y=420)
-poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20)
+poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20, command= lambda: samaksāt_preces() + 0.10)
 poga_4.place(x=50, y=500)
-poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20)
+poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20, command= lambda: samaksāt_preces() + 0.20)
 poga_5.place(x=140, y=500)
-poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20)
+poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20, command= lambda:samaksāt_preces() + 0.50)
 poga_6.place(x=230, y=500)
-poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20)
+poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 1.00)
 poga_7.place(x=50, y=580)
-poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20)
+poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 2.00)
 poga_8.place(x=140, y=580)
-poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20)
+poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 5.00)
 poga_9.place(x=230, y=580)
-poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20)
+poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20, command= lambda: samaksāt_preces() + 10.00)
 poga_10.place(x=350, y=420)
-poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20)
+poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20, command= lambda: samaksāt_preces() + 20.00)
 poga_11.place(x=440, y=420)
-poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20)
+poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20, command= lambda: samaksāt_preces() + 50.00)
 poga_12.place(x=530, y=420)
-poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107)
+poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107, command= lambda: samaksāt_preces() + 100.00)
 poga_13.place(x=350, y=500)
 
 
-poga_summa = Button(logs, text="summa", bg='lightgreen', padx=20, pady=20, command=kopējā_summa)
-poga_summa.place(x=350, y=580)
 
 poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20, command=pabeigt_pirkumu)
-poga_pabiegt_pirkumu.place(x=620, y=580)
+poga_pabiegt_pirkumu.place(x=530, y=580)
 
 
 logs.mainloop()
