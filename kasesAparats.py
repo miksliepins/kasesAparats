@@ -1,7 +1,6 @@
 from tkinter import *
 from collections import Counter
 
-
 logs = Tk()
 logs.title("Kases aparāts")
 logs.geometry("800x700")
@@ -251,6 +250,7 @@ def kopējā_summa():
     summa = sum(cena for _, cena in lietotaja_preces)
     summa_text.config(text=f'Kopā: €{summa:.2f}')
 
+
 ####### izmantoju AI
 
 def nonemt_preces():
@@ -261,6 +261,7 @@ def nonemt_preces():
             kases_aprāts_ekrāns.insert(END, f"{produkts} - €{cena:.2f}\n")
             kopējā_summa()
 
+
 def lietotaja_izvēle(produkts):
     global cena
 
@@ -269,25 +270,27 @@ def lietotaja_izvēle(produkts):
         lietotaja_preces.append((produkts, cena))
         kases_aprāts_ekrāns.insert(END, f"{produkts} - €{cena:.2f}\n")
         kopējā_summa()
-        
-
 
 
 #########################
 
-
 summa_text = Label(logs, text="Kopā: 0.00", font=("Helvetica"), bg='#E5E5E5')
 summa_text.place(x=630, y=420)
+
+# Define the samaskātais Label
+samaskātais = Label(logs, text='Samaksātais: €0.00', bg='#E5E5E5', font=('Helvetica', 11))
+samaskātais.place(x=630, y=490)
 
 nonemt_preces_poga = Button(logs, text='Noņemt pēdējo preci', fg='white', bg='red', command=nonemt_preces, padx=27, pady=20)
 nonemt_preces_poga.place(x=350, y=580)
 
-
 pirkums_pabeigts = False
- 
+
+def ieslēgt_naudas_pogas():
+    for button in naudas_pogas:
+        button.config(state=NORMAL)
 
 def pabeigt_pirkumu():
-    
     global pirkums_pabeigts
 
     if not lietotaja_preces:
@@ -301,46 +304,69 @@ def pabeigt_pirkumu():
         saldētie_produkti_poga.config(state=DISABLED)
         graudu_produkti_poga.config(state=DISABLED)
         nonemt_preces_poga.config(state=DISABLED)
-        
+
+        # Enable payment buttons
+        ieslēgt_naudas_pogas()
 
 samaksātā_cena = 0.0
-def samaksāt_preces():
-    0 + samaksāt_preces()
+def samaksāt_preces(daudzums):
+    global samaksātā_cena
+    samaksātā_cena += daudzums
+    samaskātais.config(text=f'Samaksātais: €{samaksātā_cena:.2f}')
+    paradīt_samaksāto()
 
-samaskātais = Label(logs, text='Samaksātais: ', bg='#E5E5E5', font=('Helvetica', 11) )
-samaskātais.place(x= 630, y= 490)
+def izslēgt_eiro_pogas():
+    for button in naudas_pogas:
+        button.config(state=DISABLED)
 
-poga_1 = Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() + 0.01)
-poga_1.place(x=50, y=420)
-poga_2 = Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() +0.02)
-poga_2.place(x=140, y=420)
-poga_3 = Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20, command= lambda: samaksāt_preces() + 0.05)
-poga_3.place(x=230, y=420)
-poga_4 = Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20, command= lambda: samaksāt_preces() + 0.10)
-poga_4.place(x=50, y=500)
-poga_5 = Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20, command= lambda: samaksāt_preces() + 0.20)
-poga_5.place(x=140, y=500)
-poga_6 = Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20, command= lambda:samaksāt_preces() + 0.50)
-poga_6.place(x=230, y=500)
-poga_7 = Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 1.00)
-poga_7.place(x=50, y=580)
-poga_8 = Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 2.00)
-poga_8.place(x=140, y=580)
-poga_9 = Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20, command= lambda: samaksāt_preces() + 5.00)
-poga_9.place(x=230, y=580)
-poga_10 = Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20, command= lambda: samaksāt_preces() + 10.00)
-poga_10.place(x=350, y=420)
-poga_11 = Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20, command= lambda: samaksāt_preces() + 20.00)
-poga_11.place(x=440, y=420)
-poga_12 = Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20, command= lambda: samaksāt_preces() + 50.00)
-poga_12.place(x=530, y=420)
-poga_13 = Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107, command= lambda: samaksāt_preces() + 100.00)
-poga_13.place(x=350, y=500)
+def paradīt_samaksāto():
+    summa = sum(cena for _, cena in lietotaja_preces)
+    if samaksātā_cena >= summa:
+        atlikums = samaksātā_cena - summa
+        if atlikums > 0:
+            kases_aprāts_ekrāns.insert(END, f'Atlikums: €{atlikums:.2f}\n')
+        kases_aprāts_ekrāns.insert(END, 'Pirkums pabeigts!\n')
+        izslēgt_eiro_pogas()
+
+# Rest of the payment button definitions and placement
 
 
+naudas_pogas = [
+    Button(logs, text="1 cents", bg='lightgrey', padx=20, pady=20, command=lambda: samaksāt_preces(0.01)),
+    Button(logs, text="2 centi", bg='lightgrey', padx=20, pady=20, command=lambda: samaksāt_preces(0.02)),
+    Button(logs, text="5 centi", bg='lightgrey', padx=20, pady=20, command=lambda: samaksāt_preces(0.05)),
+    Button(logs, text="10 centi", bg='lightgrey', padx=18, pady=20, command=lambda: samaksāt_preces(0.10)),
+    Button(logs, text="20 centi", bg='lightgrey', padx=18, pady=20, command=lambda: samaksāt_preces(0.20)),
+    Button(logs, text="50 centi", bg='lightgrey', padx=18, pady=20, command=lambda: samaksāt_preces(0.50)),
+    Button(logs, text="1 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: samaksāt_preces(1.00)),
+    Button(logs, text="2 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: samaksāt_preces(2.00)),
+    Button(logs, text="5 Eiro", bg='lightgrey', padx=24, pady=20, command=lambda: samaksāt_preces(5.00)),
+    Button(logs, text="10 Eiro", bg='lightgray', padx=20, pady=20, command=lambda: samaksāt_preces(10.00)),
+    Button(logs, text='20 Eiro', bg='lightgray', pady=20, padx=20, command=lambda: samaksāt_preces(20.00)),
+    Button(logs, text="50 Eiro", bg='lightgrey', pady=20, padx=20, command=lambda: samaksāt_preces(50.00)),
+    Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107, command=lambda: samaksāt_preces(100.00))
+]
+
+# Place payment buttons on the screen
+naudas_pogas[0].place(x=50, y=420)
+naudas_pogas[1].place(x=140, y=420)
+naudas_pogas[2].place(x=230, y=420)
+naudas_pogas[3].place(x=50, y=500)
+naudas_pogas[4].place(x=140, y=500)
+naudas_pogas[5].place(x=230, y=500)
+naudas_pogas[6].place(x=50, y=580)
+naudas_pogas[7].place(x=140, y=580)
+naudas_pogas[8].place(x=230, y=580)
+naudas_pogas[9].place(x=350, y=420)
+naudas_pogas[10].place(x=440, y=420)
+naudas_pogas[11].place(x=530, y=420)
+naudas_pogas[12].place(x=350, y=500)
+
+# Initially disable payment buttons
+for button in naudas_pogas:
+    button.config(state=DISABLED)
 
 poga_pabiegt_pirkumu = Button(logs, text="Pabeigt pirkumu", bg='lightgreen', padx=20, pady=20, command=pabeigt_pirkumu)
 poga_pabiegt_pirkumu.place(x=530, y=580)
-
 
 logs.mainloop()
