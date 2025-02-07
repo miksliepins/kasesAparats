@@ -1,5 +1,4 @@
 from tkinter import *
-from collections import Counter
 
 logs = Tk()
 logs.title("Kases aparāts")
@@ -247,7 +246,7 @@ lietotaja_preces = []
 
 
 def kopējā_summa():
-    summa = sum(cena for _, cena in lietotaja_preces)
+    summa = sum(cena for i, cena in lietotaja_preces)
     summa_text.config(text=f'Kopā: €{summa:.2f}')
 
 
@@ -305,14 +304,14 @@ def pabeigt_pirkumu():
         graudu_produkti_poga.config(state=DISABLED)
         nonemt_preces_poga.config(state=DISABLED)
 
-        # Enable payment buttons
+       
         ieslēgt_naudas_pogas()
 
 samaksātā_cena = 0.0
 def samaksāt_preces(daudzums):
     global samaksātā_cena
     samaksātā_cena += daudzums
-    samaskātais.config(text=f'Samaksātais: €{samaksātā_cena:.2f}')
+    samaskātais.config(text=f'Samaksātais: €{samaksātā_cena:.2f}',)
     paradīt_samaksāto()
 
 def izslēgt_eiro_pogas():
@@ -320,7 +319,7 @@ def izslēgt_eiro_pogas():
         button.config(state=DISABLED)
 
 def paradīt_samaksāto():
-    summa = sum(cena for _, cena in lietotaja_preces)
+    summa = sum(cena for i, cena in lietotaja_preces)
     if samaksātā_cena >= summa:
         atlikums = samaksātā_cena - summa
         if atlikums > 0:
@@ -328,7 +327,7 @@ def paradīt_samaksāto():
         kases_aprāts_ekrāns.insert(END, 'Pirkums pabeigts!\n')
         izslēgt_eiro_pogas()
 
-# Rest of the payment button definitions and placement
+
 
 
 naudas_pogas = [
@@ -347,7 +346,7 @@ naudas_pogas = [
     Button(logs, text='100 Eiro', bg='lightgrey', pady=20, padx=107, command=lambda: samaksāt_preces(100.00))
 ]
 
-# Place payment buttons on the screen
+
 naudas_pogas[0].place(x=50, y=420)
 naudas_pogas[1].place(x=140, y=420)
 naudas_pogas[2].place(x=230, y=420)
@@ -362,7 +361,7 @@ naudas_pogas[10].place(x=440, y=420)
 naudas_pogas[11].place(x=530, y=420)
 naudas_pogas[12].place(x=350, y=500)
 
-# Initially disable payment buttons
+
 for button in naudas_pogas:
     button.config(state=DISABLED)
 
